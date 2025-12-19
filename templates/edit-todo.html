@@ -1,0 +1,67 @@
+{% include "layout.html" %}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="text-center">Let's edit your To-Do</h3>
+        </div>
+        <div class="card-body">
+          
+            <form id="editTodoForm" method="POST" action="/login">
+                <div class="form-group mb-3">
+                    <label for="title" class="form-label">title</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        name="title"
+                        value="{{ todo.title }}"
+                        required
+                    />
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea
+                        rows="2"           
+                        class="form-control"
+                        id="description"
+                        name="description"
+                        required
+                    >{{ todo.description }}</textarea>
+                </div>
+                <div class="form-group mb-3">
+                   <label for="priority" class="form-label" name="priority">priority</label>
+                   <select class="form-control" id="priority" name="priority">
+                        <option {% if todo.priority == 1 %} selected="selected" {% endif %}>1</option>
+                        <option {% if todo.priority == 2 %} selected="selected" {% endif %}>2</option>    
+                        <option {% if todo.priority == 3 %} selected="selected" {% endif %}>3</option>    
+                        <option {% if todo.priority == 4 %} selected="selected" {% endif %}>4</option>    
+                        <option {% if todo.priority == 5 %} selected="selected" {% endif %}>5</option>    
+                    </select>
+                </div>
+                <div class="form-group mb-3 form-check">
+                    <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="completed" {# Changed ID to match name="completed" for consistency #}
+                        name="completed"
+                        {% if todo.completed %} checked {% endif %}
+                    />
+                    <label class="form-check-label" for="completed">Completed</label>
+                </div>
+                  
+                <button type="submit" class="btn btn-primary">Edit your To-Do</button>
+                <a href="/todos/todo-page" class="btn btn-success">Back to To-Do List</a>
+                
+                {# The delete button is defined AFTER the form content #}
+                <button
+                    id="deleteButton" 
+                    type="button"
+                    class="btn btn-danger">
+                    Delete
+                </button>
+                
+            </form>
+        </div>
+    </div>
+</div>
