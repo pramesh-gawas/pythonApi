@@ -2,15 +2,15 @@
 from fastapi import APIRouter,Depends,Path,HTTPException,Request,status
 from typing import Annotated
 from pydantic import BaseModel,Field
-from todoApp.models import TodoItems
+from models import TodoItems
 from sqlalchemy.orm import Session
-from todoApp.database import sessionmaker as SessionLocal
+from database import sessionmaker as SessionLocal
 from starlette import status  
-from todoApp.routers.auth import get_current_user
+from routers.auth import get_current_user
 from starlette.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-templates = Jinja2Templates(directory="todoApp/templates")
+templates = Jinja2Templates(directory="templates")
 router = APIRouter(
     prefix='/todos', 
     tags=["todos"]

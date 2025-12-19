@@ -1,9 +1,9 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException,Request
 from pydantic import BaseModel
-from todoApp.models import Users
+from models import Users
 from passlib.context import CryptContext
-from todoApp.database import sessionmaker
+from database import sessionmaker
 from sqlalchemy.orm import Session
 from starlette import status
 from fastapi.security import OAuth2PasswordRequestForm,OAuth2PasswordBearer
@@ -23,7 +23,7 @@ router = APIRouter(
 
 becrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
-templates = Jinja2Templates(directory="todoApp/templates")
+templates = Jinja2Templates(directory="templates")
 
 #pages
 
